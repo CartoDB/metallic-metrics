@@ -25,6 +25,7 @@
     "test": "test"
   },
   "dependencies": {
+    "metallic-interfaces": "^0.1.1",
     "node-statsd": "~0.1.1"
   },
   "scripts": {
@@ -44,7 +45,7 @@
     "babel-plugin-transform-es2015-modules-commonjs": "6.23.0",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "istanbul": "0.4.5",
-    "metallic-logger": "^0.2.1",
+    "metallic-logger": "^0.3.2",
     "mocha": "3.2.0",
     "sinon": "1.17.7",
     "source-map-support": "0.4.11",
