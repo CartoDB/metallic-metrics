@@ -1,6 +1,5 @@
 import assert from 'assert'
-import MetricsFactory from '../src'
-import { MetricsInterface } from '../src'
+import MetricsFactory, { MetricsInterface } from '../src'
 import LoggerFactory from 'metallic-logger'
 
 describe('metrics-factory', function () {
