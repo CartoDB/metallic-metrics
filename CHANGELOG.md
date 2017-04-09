@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.4.0 (2017-04-09)
+
+ - Upgrade dependencies
+
+
 ## v0.3.0 (2017-04-06)
 
  - Upgrade dev-dependencies
