@@ -1,6 +1,5 @@
 import { FactoryInterface } from 'metallic-interfaces'
 import Metrics from './metrics'
-import DisabledMetrics from './disabled-metrics'
 import StatsD from 'node-statsd'
 import defaults from './defaults'
 
@@ -11,7 +10,7 @@ export default class MetricsFactory extends FactoryInterface {
     const options = { ...defaults, ...opts }
 
     if (!options.enabled) {
-      return new DisabledMetrics()
+      return
     }
 
     const host = options.host

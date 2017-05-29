@@ -13,9 +13,9 @@ describe('metrics-factory', function () {
     assert.ok(metrics instanceof MetricsInterface)
   })
 
-  it('.create() should return a Metrics instance when disabled', function () {
+  it('.create() should return undefined instance when disabled', function () {
     const metrics = MetricsFactory.create(this.looger, { enabled: false, prefix: 'wadus' })
 
-    assert.ok(metrics instanceof MetricsInterface)
+    assert.ok(metrics === undefined)
   })
 })
