@@ -1,21 +1,10 @@
 import MetricsInterface from './metrics-interface'
 
 export default class Metrics extends MetricsInterface {
-  constructor (metrics, interval, logger) {
+  constructor (metrics, interval) {
     super()
     this.provider = metrics
     this.interval = interval
-    this.logger = logger
-
-    this.logOnError()
-    this.gaugeMemory()
-    this.gaugeCPU()
-  }
-
-  logOnError () {
-    this.provider.socket.on('error', err => this.logger.error('Error sending stats:', err))
-
-    this.logger.debug('Log on error sending stats activated')
   }
 
   gaugeMemory () {
@@ -24,8 +13,6 @@ export default class Metrics extends MetricsInterface {
 
       Object.keys(memoryUsage).forEach(property => this.gauge(`memory.${property}`, memoryUsage[property]))
     }, this.interval)
-
-    this.logger.debug('Gauge memory activated every %s seconds', this.interval / 1000)
   }
 
   gaugeCPU () {
@@ -38,8 +25,6 @@ export default class Metrics extends MetricsInterface {
 
       previousCPUUsage = CPUUsage
     }, this.interval)
-
-    this.logger.debug('Gauge CPU activated every %s seconds', this.interval / 1000)
   }
 
   timing () {

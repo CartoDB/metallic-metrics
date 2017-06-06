@@ -1,4 +1,6 @@
 import { FactoryInterface } from 'metallic-interfaces'
+import MetricsLoggerMixin from './metrics-logger-mixin'
+import MetricsLogOnErrorMixin from './metrics-log-on-error-mixin'
 import Metrics from './metrics'
 import StatsD from 'node-statsd'
 import defaults from './defaults'
@@ -20,6 +22,29 @@ export default class MetricsFactory extends FactoryInterface {
 
     const statsd = new StatsD(host, port, prefix)
 
-    return new Metrics(statsd, interval, logger)
+    const MetricsOnSteroids = logger
+      ? MetricsLogOnErrorMixin.mix(
+        MetricsLoggerMixin.mix(
+          Metrics
+        )
+      )
+      : Metrics
+
+    const metricsArgs = [ statsd, interval ]
+
+    if (logger) {
+      metricsArgs.unshift(logger)
+      metricsArgs.unshift(logger)
+    }
+
+    const metrics = new MetricsOnSteroids(...metricsArgs)
+
+    if (logger) {
+      metrics.logOnError()
+    }
+    metrics.gaugeMemory()
+    metrics.gaugeCPU()
+
+    return metrics
   }
 }

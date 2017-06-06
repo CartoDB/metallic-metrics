@@ -1,7 +1,6 @@
 import assert from 'assert'
 import sinon from 'sinon'
 import MetricsInterface from '../src/metrics-interface'
-import LoggerInterface from 'metallic-logger'
 import Metrics from '../src/metrics'
 import EventEmitter from 'events'
 
@@ -18,22 +17,16 @@ class MetricsProvider extends MetricsInterface {
   increment () {}
 }
 
-class Logger extends LoggerInterface {}
-
 describe('metrics', function () {
   beforeEach(function () {
     this.sandbox = sinon.sandbox.create()
     this.provider = new MetricsProvider()
     this.providerSocketMock = this.sandbox.mock(this.provider)
 
-    this.logger = new Logger()
-    this.logger.debug = this.sandbox.spy()
-
-    this.metrics = new Metrics(this.provider, GAUGE_MEMORY_INTERVAL, this.logger)
+    this.metrics = new Metrics(this.provider, GAUGE_MEMORY_INTERVAL)
   })
 
   afterEach(function () {
-    assert.ok(this.logger.debug.called)
     this.sandbox.restore()
   })
 
@@ -44,15 +37,6 @@ describe('metrics', function () {
     this.metrics.timing(...args)
 
     assert.ok(this.provider.timing.calledWithExactly(...args))
-  })
-
-  it('should log when socket emits error', function () {
-    this.logger.error = this.sandbox.spy()
-    const error = new Error('something went wrong')
-
-    this.metrics.provider.socket.emit('error', error)
-
-    assert.ok(this.logger.error.calledOnce)
   })
 
   it('.gauge() should gauge a stat by a specified amount', function () {

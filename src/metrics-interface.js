@@ -15,10 +15,6 @@ export default class MetricsInterface {
     throw new UnimplementedError()
   }
 
-  logOnError () {
-    throw new UnimplementedError()
-  }
-
   gaugeMemory () {
     throw new UnimplementedError()
   }
