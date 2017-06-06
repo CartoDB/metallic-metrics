@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.6.0 (2017-06-06)
+
+ - Make logger optional
+
+
 ## v0.5.0 (2017-06-06)
 
  - Upgrade metallic dependencies
