@@ -1,5 +1,13 @@
 # Metallic Metrics ChangeLog
 
+## v0.5.0 (2017-06-06)
+
+ - Upgrade metallic dependencies
+ - Add package-lock.json
+ - Remove dummy metrics when metrics is not enabled
+ - Migrate from instabul to nyc for code coverage
+
+
 ## v0.4.0 (2017-04-09)
 
  - Upgrade dependencies
