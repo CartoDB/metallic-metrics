@@ -5,7 +5,8 @@ import LoggerFactory from 'metallic-logger'
 describe('metrics-factory', function () {
   it('.create() should return a Metrics instance', function () {
     const logger = undefined
-    const metrics = MetricsFactory.create(logger, { prefix: 'wadus' })
+    const options = { prefix: 'wadus' }
+    const metrics = MetricsFactory.create({ logger, options })
 
     assert.ok(metrics instanceof MetricsInterface)
   })
@@ -19,7 +20,8 @@ describe('metrics-factory', function () {
 
   it('.create() should return undefined instance when disabled', function () {
     const logger = undefined
-    const metrics = MetricsFactory.create(logger, { enabled: false, prefix: 'wadus' })
+    const options = { enabled: false, prefix: 'wadus' }
+    const metrics = MetricsFactory.create({ logger, options })
 
     assert.ok(metrics === undefined)
   })

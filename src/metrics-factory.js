@@ -5,20 +5,18 @@ import Metrics from './metrics'
 import StatsD from 'node-statsd'
 import defaults from './defaults'
 
-export { default as MetricsInterface } from './metrics-interface'
-
 export default class MetricsFactory extends FactoryInterface {
-  static create (logger, opts) {
-    const options = { ...defaults, ...opts }
+  static create ({ logger, options }) {
+    const opts = { ...defaults, ...options }
 
-    if (!options.enabled) {
+    if (!opts.enabled) {
       return
     }
 
-    const host = options.host
-    const port = options.port
-    const interval = options.interval
-    const prefix = options.prefix
+    const host = opts.host
+    const port = opts.port
+    const interval = opts.interval
+    const prefix = opts.prefix
 
     const statsd = new StatsD(host, port, prefix)
 
@@ -30,14 +28,11 @@ export default class MetricsFactory extends FactoryInterface {
       )
       : Metrics
 
-    const metricsArgs = [ statsd, interval ]
-
-    if (logger) {
-      metricsArgs.unshift(logger)
-      metricsArgs.unshift(logger)
-    }
-
-    const metrics = new MetricsOnSteroids(...metricsArgs)
+    const metrics = new MetricsOnSteroids({
+      provider: statsd,
+      interval,
+      logger
+    })
 
     if (logger) {
       metrics.logOnError()
