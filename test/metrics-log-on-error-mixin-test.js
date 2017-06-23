@@ -49,7 +49,6 @@ describe('metrics-log-on-error-mixin', function () {
       // see: https://nodejs.org/api/events.html#events_error_events
       this.metrics.provider.socket.emit('error', error)
     } catch (err) {
-      await new Promise(resolve => setTimeout(() => resolve(), 1))
       assert.ok(socketOnStub.calledWith('error', error))
       assert.ok(loggerErrorStub.calledWith(error))
     }
