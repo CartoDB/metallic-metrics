@@ -12,8 +12,8 @@ describe('metrics-factory', function () {
   })
 
   it('.create() should return a Metrics instance with logger', function () {
-    const logger = LoggerFactory.create({ name: 'wadus' })
-    const metrics = MetricsFactory.create(logger, { prefix: 'wadus' })
+    const logger = LoggerFactory.create({ options: { name: 'wadus' } })
+    const metrics = MetricsFactory.create({ logger, options: { prefix: 'wadus' } })
 
     assert.ok(metrics instanceof MetricsInterface)
   })

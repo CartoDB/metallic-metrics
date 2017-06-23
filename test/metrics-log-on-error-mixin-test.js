@@ -12,6 +12,7 @@ class MetricsProvider extends MetricsInterface {
   constructor () {
     super()
     this.socket = new EventEmitter()
+    this.socket.on('error', () => {})
   }
 
   timing () {}
@@ -24,12 +25,12 @@ class Logger extends LoggerInterface {}
 describe('metrics-log-on-error-mixin', function () {
   beforeEach(function () {
     this.sandbox = sinon.sandbox.create()
-    this.provider = new MetricsProvider()
-    this.logger = new Logger()
+    const provider = this.provider = new MetricsProvider()
+    const logger = this.logger = new Logger()
 
     const MetricsOnSteroids = MetricsLogOnErrorMixin.mix(Metrics)
 
-    this.metrics = new MetricsOnSteroids(this.logger, this.provider, GAUGE_MEMORY_INTERVAL)
+    this.metrics = new MetricsOnSteroids({ logger, provider, interval: GAUGE_MEMORY_INTERVAL })
   })
 
   afterEach(function () {
@@ -40,14 +41,17 @@ describe('metrics-log-on-error-mixin', function () {
     assert.ok(this.metrics instanceof MetricsInterface)
   })
 
-  it.skip('should log when socket emits error', function () {
+  it('should log when socket emits error', async function () {
     const error = new Error('wadus')
     const socketOnStub = this.sandbox.stub(this.provider.socket, 'on')
     const loggerErrorStub = this.sandbox.stub(this.logger, 'error')
-
-    this.metrics.provider.socket.emit('error', error)
-
-    assert.ok(socketOnStub.calledWith('error', error))
-    assert.ok(loggerErrorStub.calledWith(error))
+    try {
+      // see: https://nodejs.org/api/events.html#events_error_events
+      this.metrics.provider.socket.emit('error', error)
+    } catch (err) {
+      await new Promise(resolve => setTimeout(() => resolve(), 1))
+      assert.ok(socketOnStub.calledWith('error', error))
+      assert.ok(loggerErrorStub.calledWith(error))
+    }
   })
 })

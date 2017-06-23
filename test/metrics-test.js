@@ -20,10 +20,10 @@ class MetricsProvider extends MetricsInterface {
 describe('metrics', function () {
   beforeEach(function () {
     this.sandbox = sinon.sandbox.create()
-    this.provider = new MetricsProvider()
+    const provider = this.provider = new MetricsProvider()
     this.providerSocketMock = this.sandbox.mock(this.provider)
 
-    this.metrics = new Metrics(this.provider, GAUGE_MEMORY_INTERVAL)
+    this.metrics = new Metrics({ provider, interval: GAUGE_MEMORY_INTERVAL })
   })
 
   afterEach(function () {
