@@ -37,8 +37,11 @@ export default class MetricsFactory extends FactoryInterface {
     if (logger) {
       metrics.logOnError()
     }
-    metrics.gaugeMemory()
-    metrics.gaugeCPU()
+
+    if (interval > 0) {
+      metrics.gaugeMemory()
+      metrics.gaugeCPU()
+    }
 
     return metrics
   }
