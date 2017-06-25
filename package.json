@@ -1,6 +1,6 @@
 {
   "name": "metallic-metrics",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "StatsD's client for CARTO services",
   "main": "lib/index.js",
   "repository": {
