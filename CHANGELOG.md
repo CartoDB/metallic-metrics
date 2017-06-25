@@ -1,5 +1,11 @@
 # Metallic Metrics ChangeLog
 
+## v0.7.0 (2017-mm-dd)
+
+ - Pass arguments to constructors in one object
+ - Update dependencies
+
+
 ## v0.6.0 (2017-06-06)
 
  - Make logger optional
