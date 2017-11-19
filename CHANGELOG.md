@@ -1,5 +1,20 @@
 # Metallic Metrics ChangeLog
 
+## v0.8.0 (2017-11-19)
+
+ - Update deps:
+   + metallic-interfaces: 0.3.0
+   + babel-cli: 6.26.0
+   + babel-plugin-transform-es2015-modules-commonjs: 6.26.0
+   + babel-plugin-transform-object-rest-spread: 6.26.0
+   + metallic-logger: 0.9.0
+   + mocha: 4.0.1
+   + nyc: 11.3.0
+   + sinon: 4.1.2
+   + source-map-support: 0.5.0
+   + standard: 10.0.3
+
+
 ## v0.7.0 (2017-06-25)
 
  - Pass arguments to constructors in one object
