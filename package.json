@@ -25,6 +25,7 @@
     "test": "test"
   },
   "dependencies": {
+    "babel-register": "^6.26.0",
     "metallic-interfaces": "^0.3.0",
     "node-statsd": "^0.1.1"
   },
