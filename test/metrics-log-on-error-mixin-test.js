@@ -20,7 +20,9 @@ class MetricsProvider extends MetricsInterface {
   increment () {}
 }
 
-class Logger extends LoggerInterface {}
+class Logger extends LoggerInterface {
+  error () {}
+}
 
 describe('metrics-log-on-error-mixin', function () {
   beforeEach(function () {
@@ -45,6 +47,7 @@ describe('metrics-log-on-error-mixin', function () {
     const error = new Error('wadus')
     const socketOnStub = this.sandbox.stub(this.provider.socket, 'on')
     const loggerErrorStub = this.sandbox.stub(this.logger, 'error')
+
     try {
       // see: https://nodejs.org/api/events.html#events_error_events
       this.metrics.provider.socket.emit('error', error)
