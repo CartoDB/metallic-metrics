@@ -13,12 +13,8 @@ export default class MetricsFactory extends FactoryInterface {
       return
     }
 
-    const host = opts.host
-    const port = opts.port
-    const interval = opts.interval
-    const prefix = opts.prefix
-
-    const statsd = new StatsD(host, port, prefix)
+    const { host, port, prefix, suffix, globalize, cacheDns, mock, globalTags } = opts
+    const statsd = new StatsD(host, port, prefix, suffix, globalize, cacheDns, mock, globalTags)
 
     const MetricsOnSteroids = logger
       ? MetricsLogOnErrorMixin.mix(
@@ -28,6 +24,7 @@ export default class MetricsFactory extends FactoryInterface {
       )
       : Metrics
 
+    const { interval } = opts
     const metrics = new MetricsOnSteroids({
       provider: statsd,
       interval,

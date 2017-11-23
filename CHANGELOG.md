@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.9.0 (2017-11-24)
+
+ - Added default arguments to StatsD client
+
+
 ## v0.8.0 (2017-11-19)
 
  - Update deps:
