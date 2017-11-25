@@ -8,5 +8,5 @@ export default {
   cacheDns: false,
   mock: process.env.NODE_ENV === 'test',
   globalTags: [],
-  interval: 5000
+  interval: process.env.NODE_ENV === 'test' ? 0 : 5000
 }
