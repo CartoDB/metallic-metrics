@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.10.0 (2017-11-25)
+
+ - Do not set CPU and memory usage intervals while testing
+
+
 ## v0.9.0 (2017-11-24)
 
  - Added default arguments to StatsD client
