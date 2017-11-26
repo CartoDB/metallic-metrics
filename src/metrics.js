@@ -8,9 +8,7 @@ export default class Metrics extends MetricsInterface {
 
   async run () {}
 
-  async close () {
-    this.provider.close()
-  }
+  async close () {}
 
   timing () {
     this.provider.timing(...arguments)

@@ -1,7 +1,6 @@
 import { FactoryInterface } from 'metallic-interfaces'
 import ErrorListener from './error-listener'
 import MetricsErrorListenerMixin from './metrics-error-listener-mixin'
-import MetricsLoggerMixin from './metrics-logger-mixin'
 import Metrics from './metrics'
 import StatsD from 'node-statsd'
 import defaults from './defaults'
@@ -28,15 +27,9 @@ export default class MetricsFactory extends FactoryInterface {
       )
       : Metrics
 
-    const MetricsOnSteroids = logger
-      ? MetricsErrorListenerMixin.mix(
-        MetricsLoggerMixin.mix(
-          GaugedMetrics
-        )
-      )
-      : Metrics
+    const LoggedGaugedMetrics = logger ? MetricsErrorListenerMixin.mix(GaugedMetrics) : Metrics
 
-    const metrics = new MetricsOnSteroids({
+    const metrics = new LoggedGaugedMetrics({
       provider: statsd,
       errorListener,
       interval,
