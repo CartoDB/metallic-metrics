@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.11.0 (2017-mm-dd)
+
+ - Add run and close methods to attach and detach listeners
+
+
 ## v0.10.0 (2017-11-25)
 
  - Do not set CPU and memory usage intervals while testing
