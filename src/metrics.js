@@ -8,7 +8,9 @@ export default class Metrics extends MetricsInterface {
 
   async run () {}
 
-  async close () {}
+  async close () {
+    this.provider.close()
+  }
 
   timing () {
     this.provider.timing(...arguments)
@@ -18,7 +20,23 @@ export default class Metrics extends MetricsInterface {
     this.provider.gauge(...arguments)
   }
 
+  unique () {
+    this.provider.unique(...arguments)
+  }
+
+  set () {
+    this.provider.set(...arguments)
+  }
+
   increment () {
     this.provider.increment(...arguments)
+  }
+
+  decrement () {
+    this.provider.decrement(...arguments)
+  }
+
+  histogram () {
+    this.provider.histogram(...arguments)
   }
 }

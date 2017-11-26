@@ -17,11 +17,23 @@ export default class MetricsInterface extends RunnerInterface {
     throw new UnimplementedError()
   }
 
-  gaugeMemory () {
+  unique () {
+    throw new UnimplementedError()
+  }
+
+  set () {
     throw new UnimplementedError()
   }
 
   increment () {
+    throw new UnimplementedError()
+  }
+
+  decrement () {
+    throw new UnimplementedError()
+  }
+
+  histogram () {
     throw new UnimplementedError()
   }
 }
