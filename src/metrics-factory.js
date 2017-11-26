@@ -1,9 +1,12 @@
 import { FactoryInterface } from 'metallic-interfaces'
+import ErrorListener from './error-listener'
+import MetricsErrorListenerMixin from './metrics-error-listener-mixin'
 import MetricsLoggerMixin from './metrics-logger-mixin'
-import MetricsLogOnErrorMixin from './metrics-log-on-error-mixin'
 import Metrics from './metrics'
 import StatsD from 'node-statsd'
 import defaults from './defaults'
+import MetricsGaugeMemoryMixin from './metrics-gauge-memory-mixin'
+import MetricsGaugeCPUMixin from './metrics-gauge-cpu-mixin'
 
 export default class MetricsFactory extends FactoryInterface {
   static create ({ logger, options }) {
@@ -13,32 +16,32 @@ export default class MetricsFactory extends FactoryInterface {
       return
     }
 
-    const { host, port, prefix, suffix, globalize, cacheDns, mock, globalTags } = opts
+    const { host, port, prefix, suffix, globalize, cacheDns, mock, globalTags, interval } = opts
     const statsd = new StatsD(host, port, prefix, suffix, globalize, cacheDns, mock, globalTags)
+    const errorListener = new ErrorListener(statsd.socket)
 
-    const MetricsOnSteroids = logger
-      ? MetricsLogOnErrorMixin.mix(
-        MetricsLoggerMixin.mix(
+    const GaugedMetrics = interval > 0
+      ? MetricsGaugeMemoryMixin.mix(
+        MetricsGaugeCPUMixin.mix(
           Metrics
         )
       )
       : Metrics
 
-    const { interval } = opts
+    const MetricsOnSteroids = logger
+      ? MetricsErrorListenerMixin.mix(
+        MetricsLoggerMixin.mix(
+          GaugedMetrics
+        )
+      )
+      : Metrics
+
     const metrics = new MetricsOnSteroids({
       provider: statsd,
+      errorListener,
       interval,
       logger
     })
-
-    if (logger) {
-      metrics.logOnError()
-    }
-
-    if (interval > 0) {
-      metrics.gaugeMemory()
-      metrics.gaugeCPU()
-    }
 
     return metrics
   }
