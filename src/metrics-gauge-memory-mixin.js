@@ -23,7 +23,7 @@ export default class MetricsGaugeMemoryMixin {
 
       close () {
         clearInterval(this.memoryInterval)
-        super.run()
+        super.close()
       }
     }
   }

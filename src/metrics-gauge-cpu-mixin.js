@@ -27,7 +27,7 @@ export default class MetricsGaugeCPUMixin {
 
       close () {
         clearInterval(this.cpuInterval)
-        super.run()
+        super.close()
       }
     }
   }
