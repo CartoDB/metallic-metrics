@@ -1,8 +1,15 @@
+import readPkgUp from 'read-pkg-up'
+
+const { pkg } = readPkgUp.sync({
+  cwd: process.cwd(),
+  normalize: false
+})
+
 export default {
   enabled: true,
   host: 'localhost',
   port: 8125,
-  prefix: '',
+  prefix: pkg.name,
   suffix: '',
   globalize: false,
   cacheDns: false,
