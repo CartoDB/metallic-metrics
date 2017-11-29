@@ -8,7 +8,7 @@ import MetricsGaugeMemoryMixin from './metrics-gauge-memory-mixin'
 import MetricsGaugeCPUMixin from './metrics-gauge-cpu-mixin'
 
 export default class MetricsFactory extends FactoryInterface {
-  static create ({ logger, options }) {
+  static create ({ logger, options } = {}) {
     const opts = { ...defaults, ...options }
 
     if (!opts.enabled) {
