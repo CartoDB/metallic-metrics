@@ -3,7 +3,7 @@ import MetricsFactory, { MetricsInterface } from '../src'
 
 describe('metrics-factory', function () {
   it('.create() should return a Metrics instance', function () {
-    const metrics = MetricsFactory.create({})
+    const metrics = MetricsFactory.create()
 
     assert.ok(metrics instanceof MetricsInterface)
   })
