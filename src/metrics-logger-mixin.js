@@ -14,6 +14,16 @@ export default class LoggerSighupListenerMixin {
         this.logger = logger
       }
 
+      run () {
+        super.run()
+        this.logger.debug('Metrics client started')
+      }
+
+      close () {
+        super.close()
+        this.logger.debug('Metrics client stoped')
+      }
+
       timing () {
         this.logger.debug('Send "timing" command: %s', ...arguments)
         super.timing(...arguments)
