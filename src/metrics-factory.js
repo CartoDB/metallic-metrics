@@ -4,6 +4,7 @@ import MetricsErrorListenerMixin from './metrics-error-listener-mixin'
 import Metrics from './metrics'
 import StatsD from 'node-statsd'
 import defaults from './defaults'
+import MetricsLoggerMixin from './metrics-logger-mixin'
 import MetricsGaugeMemoryMixin from './metrics-gauge-memory-mixin'
 import MetricsGaugeCPUMixin from './metrics-gauge-cpu-mixin'
 
@@ -27,7 +28,13 @@ export default class MetricsFactory extends FactoryInterface {
       )
       : Metrics
 
-    const LoggedGaugedMetrics = logger ? MetricsErrorListenerMixin.mix(GaugedMetrics) : Metrics
+    const LoggedGaugedMetrics = logger
+      ? MetricsLoggerMixin.mix(
+        MetricsErrorListenerMixin.mix(
+          GaugedMetrics
+        )
+      )
+      : Metrics
 
     const metrics = new LoggedGaugedMetrics({
       provider: statsd,
