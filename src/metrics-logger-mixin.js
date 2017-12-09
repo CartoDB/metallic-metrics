@@ -14,14 +14,16 @@ export default class LoggerSighupListenerMixin {
         this.logger = logger
       }
 
-      run () {
-        super.run()
+      async run () {
+        const result = await super.run()
         this.logger.debug('Metrics client started')
+        return result
       }
 
-      close () {
-        super.close()
+      async close () {
+        const result = super.close()
         this.logger.debug('Metrics client stoped')
+        return result
       }
 
       timing () {
