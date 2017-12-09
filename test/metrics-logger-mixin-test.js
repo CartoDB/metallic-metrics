@@ -39,18 +39,18 @@ describe('metrics-error-listener-mixin', function () {
     this.sandbox.restore()
   })
 
-  it('.run() should debug a message', function () {
+  it('.run() should debug a message', async function () {
     const debugErrorStub = this.sandbox.stub(this.logger, 'debug')
 
-    this.metrics.run()
+    await this.metrics.run()
 
     assert.ok(debugErrorStub.calledOnce)
   })
 
-  it('.close() should debug a message', function () {
+  it('.close() should debug a message', async function () {
     const debugErrorStub = this.sandbox.stub(this.logger, 'debug')
 
-    this.metrics.close()
+    await this.metrics.close()
 
     assert.ok(debugErrorStub.calledOnce)
   })

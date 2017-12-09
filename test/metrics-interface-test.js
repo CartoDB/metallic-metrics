@@ -19,15 +19,23 @@ describe('metrics-interface', function () {
     assert.throws(() => this.metrics.gauge(), 'Unimplemented method')
   })
 
-  it('.logOnError() should throw "Unimplemented method" error', function () {
-    assert.throws(() => this.metrics.logOnError(), 'Unimplemented method')
+  it('.unique() should throw "Unimplemented method" error', function () {
+    assert.throws(() => this.metrics.unique(), 'Unimplemented method')
   })
 
-  it('.gaugeMemory() should throw "Unimplemented method" error', function () {
-    assert.throws(() => this.metrics.gaugeMemory(), 'Unimplemented method')
+  it('.set() should throw "Unimplemented method" error', function () {
+    assert.throws(() => this.metrics.set(), 'Unimplemented method')
   })
 
   it('.increment() should throw "Unimplemented method" error', function () {
     assert.throws(() => this.metrics.increment(), 'Unimplemented method')
+  })
+
+  it('.decrement() should throw "Unimplemented method" error', function () {
+    assert.throws(() => this.metrics.decrement(), 'Unimplemented method')
+  })
+
+  it('.histogram() should throw "Unimplemented method" error', function () {
+    assert.throws(() => this.metrics.histogram(), 'Unimplemented method')
   })
 })

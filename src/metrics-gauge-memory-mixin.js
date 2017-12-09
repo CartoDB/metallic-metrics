@@ -7,7 +7,7 @@ export default class MetricsGaugeMemoryMixin {
         this.logger = logger
       }
 
-      run () {
+      async run () {
         if (this.interval) {
           this.memoryInterval = setInterval(() => {
             const memoryUsage = process.memoryUsage()
@@ -18,12 +18,13 @@ export default class MetricsGaugeMemoryMixin {
           this.logger.debug('Gauge memory activated every %d seconds', this.interval / 1000)
         }
 
-        super.run()
+        return super.run()
       }
 
-      close () {
+      async close () {
         clearInterval(this.memoryInterval)
-        super.close()
+        this.logger.debug('Gauge CPU interval cleared', this.interval / 1000)
+        return super.close()
       }
     }
   }

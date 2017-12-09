@@ -6,8 +6,6 @@ import ErrorListener from '../src/error-listener'
 import EventEmitter from 'events'
 import LoggerInterface from 'metallic-logger'
 
-const GAUGE_MEMORY_INTERVAL = 1
-
 class DummyMetrics extends MetricsInterface {
   run () {}
   close () {}
@@ -31,8 +29,7 @@ describe('metrics-error-listener-mixin', function () {
     this.metrics = new EventedMetrics({
       errorListener,
       logger,
-      provider,
-      interval: GAUGE_MEMORY_INTERVAL
+      provider
     })
   })
 
