@@ -1,7 +1,7 @@
 import MetricsInterface from './metrics-interface'
 
 export default class Metrics extends MetricsInterface {
-  constructor ({ provider, interval }) {
+  constructor ({ provider }) {
     super()
     this.provider = provider
   }
