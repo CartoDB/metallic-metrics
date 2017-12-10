@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.12.0 (2017-12-10)
+
+ - Upgrade mettallic-logger
+
+
 ## v0.11.0 (2017-12-10)
 
  - Add travis support
