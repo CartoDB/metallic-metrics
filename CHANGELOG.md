@@ -1,8 +1,11 @@
 # Metallic Metrics ChangeLog
 
-## v0.11.0 (2017-mm-dd)
+## v0.11.0 (2017-12-10)
 
+ - Add travis support
  - Add run and close methods to attach and detach listeners
+ - Add logger mixin
+ - Set parent package's name as default value for metrics prefix
 
 
 ## v0.10.0 (2017-11-25)
