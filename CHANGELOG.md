@@ -1,5 +1,10 @@
 # Metallic Metrics ChangeLog
 
+## v0.12.1 (2017-12-10)
+
+ - Move mettallic-logger to dev dependency
+
+
 ## v0.12.0 (2017-12-10)
 
  - Upgrade mettallic-logger
